@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import "./Card.css"
+import { Link } from 'react-router-dom';
+import './Card.css';
 
 const Card = (props) => {
-    return (
-        <div className="card">
-          {props.card.id}
-          <Link to={`/album/${props.card.id}`}>
-            <button>편집하기</button>
-          </Link>
-        </div>
-      );
-}
+  return (
+    <Link to={`/album/${props.album.id}`}>
+      <div className="card">
+        <div className="album_title">{props.album.title}</div>
+        created_by {props.album.created}
+      </div>
+    </Link>
+  );
+};
 
 export default Card;
