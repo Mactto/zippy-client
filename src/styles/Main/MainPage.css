@@ -1,5 +1,28 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+.album_section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10%;
+    margin-bottom: 2%;
+}
+
+.albumCreateBtn {
+    width: 120px;
+}
+
+.album_text {
+    font-size: 3vh;
+    font-weight: bold;
+}
+
 .cards {
     width: 100%;
     display: flex;
     justify-content: center;
+    white-space: wrap;
 }

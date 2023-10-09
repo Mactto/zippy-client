@@ -93,9 +93,14 @@ const AlbumPage = () => {
       const presignedUrl = response.data.presignedUrls[uploadImage.name];
 
       await axios.put(presignedUrl, uploadImage, {
-        headers: { Content: uploadImage.type },
+        headers: {
+          'Content-Type': uploadImage.type,
+          'Content-Disposition': 'inline',
+        },
       });
     });
+
+    setIsModalOpen(false);
   };
 
   return (
@@ -105,35 +110,45 @@ const AlbumPage = () => {
       ) : (
         album && (
           <div className="album_container">
-            <div className="album">
+            <div className="album_section">
               <h1>{album.title}</h1>
+              <button
+                className="photoUploadBtn"
+                onClick={() => setIsModalOpen(!isModalOpen)}
+              >
+                이미지 업로드
+              </button>
+            </div>
+            <div className="album">
+              {photos &&
+                photos.map((photo) => (
+                  <div key={photo.id}>
+                    <img src={photo.uploadUrl} alt="이미지 설명" />
+                  </div>
+                ))}
 
-              {isModalOpen && (
-                <div className="modal">
-                  <label htmlFor="input-file" onChange={handleAddImages}>
-                    <input type="file" id="input-file" />
-                    <span>사진추가</span>
-                    <button onClick={handleUploadImages}>업로드</button>
-                  </label>
-                </div>
-              )}
+              <div className={`modal ${isModalOpen ? 'active' : ''}`}>
+                <label htmlFor="input-file" onChange={handleAddImages}>
+                  <input type="file" id="input-file" />
+                  <div className="modalBtns">
+                    <button className="uploadBtn" onClick={handleUploadImages}>
+                      업로드
+                    </button>
+                    <button
+                      className="closeModalBtn"
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </label>
+              </div>
 
               {showImages.map((image, id) => (
                 <div key={id}>
                   <img src={image} alt={`${image}-${id}`} />
                 </div>
               ))}
-            </div>
-            <div className="photos">
-              {photos &&
-                photos.map((photo) => (
-                  <div>
-                    <img src={photo.ContentimageUrl} alt="이미지 설명" />
-                  </div>
-                ))}
-              <button onClick={() => setIsModalOpen(true)}>
-                이미지 업로드
-              </button>
             </div>
           </div>
         )

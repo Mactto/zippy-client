@@ -1,10 +1,10 @@
 .header_container {
     display: flex;
     justify-content: space-between;
-    margin: 3%;
+    margin: 2% 2% 0 2%;
     white-space: nowrap;
 }
-/* Header.css */
+
 .btns {
     display: flex;
     align-items: center;
@@ -13,8 +13,11 @@
 .btns > :not(:first-child) {
     margin-left: 10px;
 }
- 
 
 .logo img {
     width: 10vh;
+}
+
+.logoutBtn {
+    width: 100px;
 }

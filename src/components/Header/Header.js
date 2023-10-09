@@ -12,7 +12,7 @@ const Header = () => {
   const handleLogout = () => {
     removeCookie('jwtToken');
     dispatch(logout());
-  }
+  };
 
   return (
     <div className="header_container">
@@ -21,14 +21,16 @@ const Header = () => {
           <img src={zippyLogo} alt="zippy_logo" />
         </Link>
       </div>
-        {isLoggedIn ? (
-          <button onClick={handleLogout}>로그아웃</button>
-        ): (
-          <div className="btns">
-            <Link to="/login">로그인</Link>
-            <Link to="/register">회원가입</Link>
-          </div>
-        )}
+      {isLoggedIn ? (
+        <button className="logoutBtn" onClick={handleLogout}>
+          로그아웃
+        </button>
+      ) : (
+        <div className="btns">
+          <Link to="/login">로그인</Link>
+          <Link to="/register">회원가입</Link>
+        </div>
+      )}
     </div>
   );
 };
